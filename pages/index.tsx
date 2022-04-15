@@ -1,6 +1,6 @@
-import type {NextPage} from 'next'
-import Button from '@mui/material/Button';
 import RocketLaunch from '@mui/icons-material/RocketLaunch'
+import Button from '@mui/material/Button'
+import type {NextPage} from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -17,7 +17,9 @@ const Home: NextPage = () => {
           variant="contained"
           color="primary"
           startIcon={<RocketLaunch />}
-          onClick={() => { alert('Button clicked') }}
+          onClick={() => {
+            alert('Button clicked')
+          }}
         >
           Hello World
         </Button>
@@ -36,7 +38,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
