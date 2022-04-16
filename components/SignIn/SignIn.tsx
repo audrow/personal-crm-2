@@ -13,28 +13,14 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
-
 const theme = createTheme()
 
 export type SignInProps = {
   handleSignIn: (email: string, password: string) => void
+  signUpUrl: string
+  forgotPasswordUrl: string
+  footerJsx?: React.ReactNode
+  theme?: typeof theme
 }
 
 export default function SignIn(props: SignInProps) {
@@ -99,19 +85,19 @@ export default function SignIn(props: SignInProps) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href={props.forgotPasswordUrl} variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href={props.signUpUrl} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{mt: 8, mb: 4}} />
+        {props.footerJsx}
       </Container>
     </ThemeProvider>
   )
