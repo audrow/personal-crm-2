@@ -13,27 +13,30 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
 
-const theme = createTheme()
-
 export type SignInProps = {
   handleSignIn: (email: string, password: string) => void
   signUpUrl: string
   forgotPasswordUrl: string
   footerJsx?: React.ReactNode
-  theme?: typeof theme
+  theme?: ReturnType<typeof createTheme>
 }
 
-export default function SignIn(props: SignInProps) {
+export default function SignIn({
+  handleSignIn,
+  signUpUrl,
+  forgotPasswordUrl,
+  footerJsx,
+  theme,
+}: SignInProps) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     const email = data.get('email') as string
     const password = data.get('password') as string
-    props.handleSignIn(email, password)
+    handleSignIn(email, password)
   }
-
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme || createTheme()}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -85,19 +88,19 @@ export default function SignIn(props: SignInProps) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href={props.forgotPasswordUrl} variant="body2">
+                <Link href={forgotPasswordUrl} variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href={props.signUpUrl} variant="body2">
+                <Link href={signUpUrl} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        {props.footerJsx}
+        {footerJsx}
       </Container>
     </ThemeProvider>
   )
