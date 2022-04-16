@@ -8,23 +8,22 @@ export type CopyrightProps = {
   year?: number
 }
 
-export default function Copyright(props: CopyrightProps) {
+export default function Copyright({
+  holderName,
+  holderUrl,
+  year,
+}: CopyrightProps) {
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
+    <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      {props.holderUrl ? (
-        <Link color="inherit" href={props.holderUrl}>
-          {props.holderName}
+      {holderUrl ? (
+        <Link color="inherit" href={holderUrl}>
+          {holderName}
         </Link>
       ) : (
-        props.holderName
+        holderName
       )}{' '}
-      {props.year ? props.year : new Date().getFullYear()}
+      {year ? year : new Date().getFullYear()}
       {'.'}
     </Typography>
   )
