@@ -7,8 +7,8 @@ export default {
   component: Copyright,
 } as ComponentMeta<typeof Copyright>
 
-const Template: ComponentStory<typeof Copyright> = (args) => ( <Copyright {...args} />
-)
+const Template: ComponentStory<typeof Copyright> = (args) => (
+  <Copyright {...args} />)
 
 export const OnlyName = Template.bind({})
 OnlyName.args = {
