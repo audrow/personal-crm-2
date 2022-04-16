@@ -55,6 +55,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.--write": "npm run format"
+    "*.{js,jsx,ts,tsx,md,mdx,yml,yaml}": "npm run format"
   }
 }
