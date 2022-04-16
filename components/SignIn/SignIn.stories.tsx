@@ -1,7 +1,7 @@
+import {Typography} from '@mui/material'
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 import React from 'react'
 import SignIn from './SignIn'
-import { Typography } from '@mui/material'
 
 export default {
   title: 'App/SignIn',
@@ -21,5 +21,5 @@ Default.args = {
     <Typography variant="body2" color="text.secondary" align="center">
       My footer
     </Typography>
-  )
+  ),
 }

@@ -23,8 +23,7 @@ export default function Copyright(props: CopyrightProps) {
         </Link>
       ) : (
         props.holderName
-      )}
-      {' '}
+      )}{' '}
       {props.year ? props.year : new Date().getFullYear()}
       {'.'}
     </Typography>
