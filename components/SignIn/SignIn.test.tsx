@@ -4,12 +4,41 @@ import React from 'react'
 import SignIn from './SignIn'
 
 describe('SignIn', () => {
-  it('renders', async () => {
-    const signUpUrl = '/signup'
-    const forgotPasswordUrl = '/forgot-password'
-    const handleSignInSpy = jest.fn()
+  const signUpUrl = '/signup'
+  const forgotPasswordUrl = '/forgot-password'
 
+  it('renders', async () => {
     const container = render(
+      <SignIn
+        handleSignIn={jest.fn()}
+        signUpUrl={signUpUrl}
+        forgotPasswordUrl={forgotPasswordUrl}
+      />,
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('inserts links correctly', async () => {
+    render(
+      <SignIn
+        handleSignIn={jest.fn()}
+        signUpUrl={signUpUrl}
+        forgotPasswordUrl={forgotPasswordUrl}
+      />,
+    )
+    expect(screen.getByRole('link', {name: /sign up/i})).toHaveAttribute(
+      'href',
+      signUpUrl,
+    )
+    expect(
+      screen.getByRole('link', {name: /forgot password/i}),
+    ).toHaveAttribute('href', forgotPasswordUrl)
+  })
+
+  it('calls the sign in callback with correct user input', async () => {
+    const handleSignInSpy = jest.fn()
+    render(
       <SignIn
         handleSignIn={handleSignInSpy}
         signUpUrl={signUpUrl}
@@ -17,10 +46,8 @@ describe('SignIn', () => {
       />,
     )
 
-    expect(container).toMatchSnapshot()
-
     const email = 'a@b.com'
-    const password = 'donthackplease'
+    const password = 'donthacklol'
 
     await user.type(screen.getByLabelText(/email/i), email)
     await user.type(screen.getByLabelText(/password/i), password)
@@ -28,8 +55,5 @@ describe('SignIn', () => {
 
     expect(handleSignInSpy).toHaveBeenCalledTimes(1)
     expect(handleSignInSpy).toHaveBeenCalledWith(email, password)
-  })
-  it('inserts links correctly', async () => {
-    // TODO
   })
 })
